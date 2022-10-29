@@ -1,0 +1,23 @@
+{
+  "name": "skyscanner-web-scraper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/carinaruut/skyscanner-web-scraper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/carinaruut/skyscanner-web-scraper/issues"
+  },
+  "homepage": "https://gitlab.com/carinaruut/skyscanner-web-scraper#readme",
+  "dependencies": {
+    "puppeteer": "^19.2.0"
+  }
+}
