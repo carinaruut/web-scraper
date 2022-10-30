@@ -1,12 +1,20 @@
-const puppeteer = require("puppeteer");
+const browserObject = require("./browser");
 
 (async () => {
-  const browser = await puppeteer.launch({
-    headless: true,
-  });
+  const browser = await browserObject.startBrowser();
+  const page = await navigateToPage(browser);
+
+  const flight = await getFlightData(page);
+
+  logFlightData(flight);
+
+  await browser.close();
+})();
+
+async function navigateToPage(browser) {
   const page = await browser.newPage();
   const userAgent =
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36";
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36";
   await page.setUserAgent(userAgent);
 
   await page.goto(
@@ -18,12 +26,8 @@ const puppeteer = require("puppeteer");
 
   await acceptCookies(page);
 
-  const flight = await getFlightData(page);
-
-  logFlightData(flight);
-
-  await browser.close();
-})();
+  return page;
+}
 
 async function acceptCookies(page) {
   const acceptCookiesButton = await page.waitForSelector("#acceptCookieButton");
